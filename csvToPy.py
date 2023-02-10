@@ -1,6 +1,5 @@
-# use pandsa to manipulate the dataset
+# use pandas to manipulate the dataset
 import pandas as csvr
-from functools import cmp_to_key
 list =csvr.read_csv('footballDataset.csv')
 
 # create a list that store the data which has the special case of team
