@@ -18,7 +18,6 @@ sunderland=df.iloc[9]
 westHam=df.iloc[10]
 
 ## Found it guys, use iloc function if you want to modify mutilple rows
-
 df.iloc[3,1]
 
 ## this means that the rank of arsenal is 3 , which means that permit us to allocate the specific location (R,C)
@@ -37,3 +36,5 @@ df.sort_values((['Rank','Points']), ascending=False)
 ## details of each team
 for index, row in df.iterrows():  
  print(index,row)
+
+## test merge thing
