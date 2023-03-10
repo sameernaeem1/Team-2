@@ -4,11 +4,20 @@ Search a specific teams results
 Compare different teams seasons
 
 
+-find out how to just choose 1 team (make array possibly)
+
 
 -----  MENU ------
 
 (not in order)
-Show teams
+Show all teams
 Compare teams
+    Choose a team to compare
+    input
+    Choose another team to compare
+    input
+    What year would you like to compare
+
 Choose team
-    what season would you like to see
+    what season would you like to view
+
