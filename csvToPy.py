@@ -1,10 +1,36 @@
 import pandas as pd 
 df = pd.read_csv("Dateset.csv")
 
+
+df.drop_duplicates()
+
+
+Teamnum=pd.DataFrame({
+'Team':['Chelsea',
+'Manchester United','Tottenham'   
+ ,'Arsenal'
+ ,'Aston Villa'
+ ,'Manchester City'
+ ,'Liverpool'
+ ,'Everton'
+,'Birmingham'
+,'Sunderland'
+,'West Ham'
+,'Fulham'
+,'Bolton'
+,'Stoke'
+,'Wigan'
+,'Blackburn'
+,'Portsmouth'
+,'Wolverhampton'
+,'Burnley','Hull']
+})
+
 ## UI 
+
 def Userinterface():
  while True:
-    userinput= input("choose the option\n0:display the whole team in whole season\n1:display the status of each team in whole season\n2:display a team\n3:display team number")
+    userinput= input("choose the option\n0:display the whole team in whole season\n1:display the status of each team in whole season\n2:display a team\n3:display team number\n4:compare another team with your choosen team")
     if userinput == '0':
         print(df)
     elif userinput=='q':
@@ -12,13 +38,34 @@ def Userinterface():
     elif userinput=='1':
       for index, row in df.iterrows():  
        print(index,row)
+
     elif userinput=='2':
         ui2=input('choose the team:')
         print(df.iloc[int(ui2)])
+        chosenteam=df.iloc[int(ui2)]
+        ui2_season=input('choose the season')
+        print(chosenteam[str(ui2_season)])
+
+
     elif userinput=='3':
-       for index, row in df.iterrows():  
+       for index, row in Teamnum.iterrows():  
         print(index,row ['Team'])
 
+    elif userinput=='4':
+      
+      ui4=input('choose the team:')
+      print(df.iloc[int(ui4)])
+
+      df1=pd.DataFrame(df.iloc[int(ui4)])
+
+      ui42=input('choose another team to compare with:')
+      print(df.iloc[int(ui42)])
+
+      df2=pd.DataFrame(df.iloc[int(ui42)])
+
+      df1.compare(df2)
+
+      
 
 
 
@@ -28,7 +75,6 @@ Userinterface()
 
 
 ## components
-
 ## sort the list in an specific order 
 df.sort_values((['Rank','Points']), ascending=False)
 ## specify the conditon to find the specific one, rank 1 teams in the past decade
@@ -40,19 +86,6 @@ for index, row in df.iterrows():  ## it list all team at same time, we can use t
 
 ## the rank of arsenal is 3 , which means that permit us to allocate the specific location (R,C)
 print(df.iloc[3,4])
-
-## top 10 team
-Chelsea=df.iloc[0]
-Manchester_united=df.iloc[1]
-Tottenham=df.iloc[2]
-Arsenal=df.iloc[3]
-AstonVilla=df.iloc[4]
-Manchester_city=df.iloc[5]
-Liverpool=df.iloc[6]
-Everton=df.iloc[7]
-Birmingham=df.iloc[8]
-sunderland=df.iloc[9]
-westHam=df.iloc[10]
 
 ## access unique element
 print(df.head(4)[['Team','Games','Season']])
