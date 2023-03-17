@@ -5,28 +5,6 @@ df = pd.read_csv("Dataset.csv")
 # get a list of all team names
 team_names = df['Team'].unique().tolist()
 
-df.drop_duplicates()
-
-Teamnum=pd.DataFrame({
-'Team':['Chelsea',
-'Manchester United','Tottenham'   
- ,'Arsenal'
- ,'Aston Villa'
- ,'Manchester City'
- ,'Liverpool'
- ,'Everton'
-,'Birmingham'
-,'Sunderland'
-,'West Ham'
-,'Fulham'
-,'Bolton'
-,'Stoke'
-,'Wigan'
-,'Blackburn'
-,'Portsmouth'
-,'Wolverhampton'
-,'Burnley','Hull']
-})
 
 ## UI 
 
