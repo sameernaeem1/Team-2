@@ -44,14 +44,10 @@ def Userinterface():
 
       ui4=input('choose the team:')
       print(df.iloc[int(ui4)])
-
       df1=pd.DataFrame(df.iloc[int(ui4)])
-
       ui42=input('choose another team to compare with:')
       print(df.iloc[int(ui42)])
-
       df2=pd.DataFrame(df.iloc[int(ui42)])
-
       df1.compare(df2)
 
     elif userinput=='5':

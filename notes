@@ -1,16 +1,16 @@
 As our dataset is regarding the Premier League Seasons from 09-22. We would create a menu that will be able to display keyword search (requirements) such as Sort data by most wins, most losses, most goals scored, least goals scored, most points. 
-Could sort data by year asked
-Search a specific teams results
+Could sort data by year asked 
+Search a specific teams results ##
 Compare different teams seasons
 
 
--find out how to just choose 1 team (make array possibly)
+-find out how to just choose 1 team (make array possibly) ///
 
 
 -----  MENU ------
 
 (not in order)
-Show all teams
+Show all teams ##
 Compare teams
     Choose a team to compare
     input
@@ -18,7 +18,7 @@ Compare teams
     input
     What year would you like to compare
 
-Choose team
+Choose team   ##
     what season would you like to view
 
 
