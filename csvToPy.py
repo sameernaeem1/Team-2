@@ -1,4 +1,5 @@
 import pandas as pd 
+import matplotlib.pyplot as plt
 df = pd.read_csv("Dataset.csv")
 
 
@@ -10,7 +11,7 @@ team_names = df['Team'].unique().tolist()
 
 def Userinterface():
  while True:
-    userinput= input("choose the option\nq:Quit\n0:display the whole team in whole season\n1:display the status of each team in whole season\n2:display a team\n3:display team number\n4:compare another team with your choosen team\n5:display the asending order rank of each teams in whole seasons\n6:display the rank and point of that particular team")
+    userinput= input("choose the option\nq:Quit\n0:display the whole team in whole season\n1:display the status of each team in whole season\n2:display a team\n3:display team number\n4:compare another team with your choosen team\n5:display the asending order rank of each teams in whole seasons\n6:display the rank and point of that particular team\n7:\n8:")
     if userinput == '0':
         print(df)
 
@@ -39,16 +40,18 @@ def Userinterface():
          print(f"{i+1}. {team}")
 
     elif userinput=='4':
-  ##Compare 2 different teams, needed to be discussed######
-  ##########################################################
+         for i, team in enumerate(team_names):
+             print(f"{i+1}. {team}")
+         ui4=int(input('choose the team:'))-1
+         print(df.iloc[int(ui4)])
+         df1=df.iloc[int(ui4)]
+         ui42=int(input('choose another team:'))-1
+         print(df.iloc[int(ui42)])
+         df2=df.iloc[int(ui42)]
+         dff=df1.compare(df2)
+         print(dff)
 
-      ui4=input('choose the team:')
-      print(df.iloc[int(ui4)])
-      df1=pd.DataFrame(df.iloc[int(ui4)])
-      ui42=input('choose another team to compare with:')
-      print(df.iloc[int(ui42)])
-      df2=pd.DataFrame(df.iloc[int(ui42)])
-      df1.compare(df2)
+
 
     elif userinput=='5':
       ## print the whole teams in ascending order of rank.
@@ -74,7 +77,41 @@ def Userinterface():
        elif user_keyword=='points':
         totalpoints=chosen_team_df[chosen_columns].sum()
         print(f"{chosen_team} got total {totalpoints} points")
-        
+
+
+    elif userinput=='7':
+      for i, team in enumerate(team_names):
+        print(f"{i+1}.{team}")
+      chosen_team_index = int(input("Enter the number of the team you want to select: ")) - 1
+      chosen_team = team_names[chosen_team_index]
+      print(f"Team:{chosen_team}")
+      chosen_team_df=df[df['Team'] == chosen_team]
+      user_keyword=input("Enter a keyword to search for the component of the team:(eg Points, rank or wins)")
+      chosen_columns=[col for col in chosen_team_df.columns if user_keyword.lower() in col.lower()] 
+      selected_comp=chosen_team_df[chosen_columns].iloc[0]
+       ## 
+      plt.bar(["comp1"],[selected_comp.values[0]])
+      plt.title(f"{chosen_team} {user_keyword}")
+      plt.show()
+
+
+
+    elif userinput=='8':
+         for i, team in enumerate(team_names):
+             print(f"{i+1}. {team}")
+         ui4=int(input('choose the team:'))-1
+         print(df.iloc[int(ui4)])
+         df1=df.iloc[int(ui4)]
+         ui42=int(input('choose another team:'))-1
+         print(df.iloc[int(ui42)])
+         df2=df.iloc[int(ui42)]
+         dff=df1.compare(df2)
+         print(dff)
+
+           
+
+
+
 
     
 
