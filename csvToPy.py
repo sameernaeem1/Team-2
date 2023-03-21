@@ -8,10 +8,12 @@ team_names = df['Team'].unique().tolist()
 
 
 ## UI 
-
+1
 def Userinterface():
  while True:
-    userinput= input("choose the option\nq:Quit\n0:display the whole team in whole season\n1:display the status of each team in whole season\n2:display a team\n3:display team number\n4:compare another team with your choosen team\n5:display the asending order rank of each teams in whole seasons\n6:display the rank and point of that particular team\n7:\n8:")
+    print("-----Premier League Season's 2009 to 2022-----")
+    print()
+    userinput= input("0:Display the whole team in whole season\n1:Display the status of each team in whole season\n2:Display a team\n3:Display team number\n4:Compare Teams\n5:Display the asending order rank of each teams in whole seasons\n6:Display the rank and point of that particular team\n7:\n8:\nq:Quit\nChoose an option:")
     if userinput == '0':
         print(df)
 
@@ -42,12 +44,18 @@ def Userinterface():
     elif userinput=='4':
          for i, team in enumerate(team_names):
              print(f"{i+1}. {team}")
-         ui4=int(input('choose the team:'))-1
-         print(df.iloc[int(ui4)])
+         ui4=int(input('Choose a team:'))-1
          df1=df.iloc[int(ui4)]
-         ui42=int(input('choose another team:'))-1
-         print(df.iloc[int(ui42)])
+         print("The team you have picked is:")
+         print(df1['Team'])
+      
+
+         
+         ui42=int(input('Choose another team:'))-1
+         #print(df.iloc[int(ui42)])
          df2=df.iloc[int(ui42)]
+         print("The team you have picked is:")
+         print(df2['Team'])
          dff=df1.compare(df2)
          print(dff)
 
