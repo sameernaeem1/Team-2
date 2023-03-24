@@ -10,19 +10,37 @@ Compare different teams seasons
 -----  MENU ------
 
 (not in order)
-Show all teams ##
+
+Display Teams 
+ ##
 Compare teams
     Choose a team to compare
     input
     Choose another team to compare
     input
-    What year would you like to compare
+    What would you like to compare about these teams
+        Goals
+        Wins
+        Losses
+        Point
+
 
 Choose team   ##
     what season would you like to view
-
-
+        Goals
+        Wins
+        Losses
+        Point
+(Possible Sort method such as top 5 best teams over the yaers number of points)
 
 Presentation:
 
 Why have you decided on this dataset?
+What is in the dataset?
+Purpose of our program
+Present 3 questions from the program
+Present a few visualations
+
+
+Visualation
+Chelsea
