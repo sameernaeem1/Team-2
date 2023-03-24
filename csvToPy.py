@@ -13,7 +13,7 @@ def Userinterface():
  while True:
     print("-----Premier League Season's 2009 to 2022-----")
     print()
-    userinput= input("0:Display the whole team in whole season\n1:Display the status of each team in whole season\n2:Display a team\n3:Display team number\n4:Compare Teams\n5:Display the asending order rank of each teams in whole seasons\n6:Display the rank and point of that particular team\n7:\n8:\nq:Quit\nChoose an option:")
+    userinput= input("0:Display the whole team in whole season\n1:Display the status of each team in whole season\n2:Display a team\n3:Display team number\n4:Compare Teams\n5:Display the asending order rank of each teams in whole seasons\n6:Display the rank and point of that particular team\n7:?\nq:Quit\nChoose an option:")
     if userinput == '0':
         print(df)
 
@@ -48,9 +48,6 @@ def Userinterface():
          df1=df.iloc[int(ui4)]
          print("The team you have picked is:")
          print(df1['Team'])
-      
-
-         
          ui42=int(input('Choose another team:'))-1
          #print(df.iloc[int(ui42)])
          df2=df.iloc[int(ui42)]
@@ -59,12 +56,9 @@ def Userinterface():
          dff=df1.compare(df2)
          print(dff)
 
-
-
     elif userinput=='5':
       ## print the whole teams in ascending order of rank.
       print(df.sort_values((['Rank','Points']), ascending=True))
-
 
   ## Ask the user to input a keyword to display the value
     elif userinput=='6':
@@ -103,25 +97,7 @@ def Userinterface():
       plt.show()
 
 
-
-    elif userinput=='8':
-         for i, team in enumerate(team_names):
-             print(f"{i+1}. {team}")
-         ui4=int(input('choose the team:'))-1
-         print(df.iloc[int(ui4)])
-         df1=df.iloc[int(ui4)]
-         ui42=int(input('choose another team:'))-1
-         print(df.iloc[int(ui42)])
-         df2=df.iloc[int(ui42)]
-         dff=df1.compare(df2)
-         print(dff)
-
            
-
-
-
-
-    
 
 
 ## api workflow
