@@ -31,10 +31,10 @@ def Userinterface():
       print("Select a team:")
       for i, team in enumerate(team_names):
          print(f"{i+1}. {team}")
-      selected_team_index = int(input("Enter the number of the team you want to select: ")) - 1
-      selected_team = team_names[selected_team_index]
-      selected_team_data = df[df['Team'] == selected_team]
-      print(selected_team_data)
+      choosen_index = int(input("Enter the number of the index team you want to select: ")) - 1
+      User_team = team_names[choosen_index]
+      User_team_data = df[df['Team'] == User_team]
+      print(User_team_data)
 
     elif userinput=='3':
        ##only shows the unique team##
@@ -49,7 +49,6 @@ def Userinterface():
          print("The team you have picked is:")
          print(df1['Team'])
       
-
          
          ui42=int(input('Choose another team:'))-1
          #print(df.iloc[int(ui42)])
@@ -85,22 +84,13 @@ def Userinterface():
        elif user_keyword=='points':
         totalpoints=chosen_team_df[chosen_columns].sum()
         print(f"{chosen_team} got total {totalpoints} points")
+       
+      
 
 
-    elif userinput=='7':
-      for i, team in enumerate(team_names):
-        print(f"{i+1}.{team}")
-      chosen_team_index = int(input("Enter the number of the team you want to select: ")) - 1
-      chosen_team = team_names[chosen_team_index]
-      print(f"Team:{chosen_team}")
-      chosen_team_df=df[df['Team'] == chosen_team]
-      user_keyword=input("Enter a keyword to search for the component of the team:(eg Points, rank or wins)")
-      chosen_columns=[col for col in chosen_team_df.columns if user_keyword.lower() in col.lower()] 
-      selected_comp=chosen_team_df[chosen_columns].iloc[0]
-       ## 
-      plt.bar(["comp1"],[selected_comp.values[0]])
-      plt.title(f"{chosen_team} {user_keyword}")
-      plt.show()
+
+
+   
 
 
 
