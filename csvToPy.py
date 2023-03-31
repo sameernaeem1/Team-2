@@ -13,7 +13,7 @@ def Userinterface():
  while True:
     print("-----Premier League Season's 2009 to 2022-----")
     print()
-    userinput= input("0:Display the whole team in whole season\n1:Display the status of each team in whole season\n2:Display a team\n3:Display team number\n4:Compare Teams\n5:Display the asending order rank of each teams in whole seasons\n6:Display the rank and point of that particular team\n7:?\nq:Quit\nChoose an option:")
+    userinput= input("0:Display the whole team in whole season\n1:Choose Team\n5:Display the asending order rank of each teams in whole seasons")
     if userinput == '0':
         print(df)
 
@@ -75,7 +75,20 @@ def Userinterface():
        chosen_team_df=df[df['Team'] == chosen_team]
        user_keyword=input("Enter a keyword to search for the component of the team:(eg Points, rank or wins)")
        chosen_columns=[col for col in chosen_team_df.columns if user_keyword.lower() in col.lower()]
-       print(chosen_team_df[chosen_columns])
+       a=chosen_team_df[chosen_columns].values.tolist()
+       c=chosen_team_df['Season'].values.tolist()
+        
+       print(a)
+       print(c)
+       fig, ax = plt.subplots()
+       ax.plot(c,a,'g--')
+       plt.show()
+        
+       
+       
+
+
+
        if  user_keyword =='wins':
         totalnum=chosen_team_df[chosen_columns].sum()
         print(f"{chosen_team}  get {totalnum} ")
@@ -85,7 +98,7 @@ def Userinterface():
         totalpoints=chosen_team_df[chosen_columns].sum()
         print(f"{chosen_team} got total {totalpoints} points")
        
-      
+       
 
 
 
