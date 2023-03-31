@@ -1,5 +1,7 @@
 import pandas as pd 
 import matplotlib.pyplot as plt
+import numpy as np
+
 df = pd.read_csv("Dataset.csv")
 
 
@@ -34,6 +36,7 @@ def Userinterface():
          dff=df1.compare(df2)
          print(dff)
 
+
     elif userinput=='3':
        for i, team in enumerate(team_names):
          print(f"{i+1}. {team}")
@@ -48,8 +51,41 @@ def Userinterface():
         
        print(a)
        print(c)
+       
+
        fig, ax = plt.subplots()
-       ax.plot(c,a,'g--')
+       ax.set_title(chosen_team,fontsize=14)
+       ax.set_xlabel("Year",fontsize=12)
+       ax.set_ylabel(user_keyword, fontsize=10)
+       ax.plot(c,a,'mD:',label=chosen_team)
+       ax.grid(True)
+
+       ax.legend()
+       plt.show()
+
+    elif userinput=='4':
+       for i, team in enumerate(team_names):
+         print(f"{i+1}. {team}")
+       chosen_team_index = int(input("Enter the number of the team you want to select: ")) - 1
+       chosen_team = team_names[chosen_team_index]
+       print(f"Team Picked:{chosen_team}")
+       chosen_team_df=df[df['Team'] == chosen_team]
+       user_keyword=input("Enter a keyword to search for the component of the team:(eg Points, rank or wins)\n")
+       chosen_columns=[col for col in chosen_team_df.columns if user_keyword.lower() in col.lower()]
+       items_count=chosen_team_df[chosen_columns].values.tolist()
+       rangeOf_item=chosen_team_df['Season'].values.tolist()
+        
+      
+
+
+       fig, ax = plt.subplots()
+       ax.set_title(chosen_team,fontsize=14)
+       ax.set_xlabel("Year",fontsize=12)
+       ax.set_ylabel(user_keyword, fontsize=10)
+       ax.bar(items_count,rangeOf_item, width=1)
+       ax.grid(True)
+       
+       ax.legend()
        plt.show()
         
        
