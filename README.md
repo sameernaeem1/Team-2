@@ -2,4 +2,4 @@
 Group Project
 
 
-construct a dataframe that store the whole status of the teams.
+construct a dataframe that store the statistics of the football teams
