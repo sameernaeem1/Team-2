@@ -80,6 +80,9 @@ def Userinterface():
        ax.legend()
        plt.show()
 
+
+
+    ## chen's visualisation 
     elif userinput=='4':
        for i, team in enumerate(team_names):
          print(f"{i+1}. {team}")
@@ -89,17 +92,21 @@ def Userinterface():
        chosen_team_df=df[df['Team'] == chosen_team]
        user_keyword=input("Enter a keyword to search for the component of the team:(eg Points, rank or wins)\n")
        chosen_columns=[col for col in chosen_team_df.columns if user_keyword.lower() in col.lower()]
-       items_count=chosen_team_df[chosen_columns].values.tolist()
-       rangeOf_item=chosen_team_df['Season'].values.tolist()
+
+
+       x = np.array(chosen_team_df['Wins'])
+       y = np.array(chosen_team_df['Season'])
         
-      
+       
+
+       print(x,y)
 
 
        fig, ax = plt.subplots()
-       ax.set_title(chosen_team,fontsize=14)
+       ax.set_title("Chelsea Wins",fontsize=20)
        ax.set_xlabel("Year",fontsize=12)
-       ax.set_ylabel(user_keyword, fontsize=10)
-       ax.bar(items_count,rangeOf_item, width=1)
+       ax.set_ylabel(user_keyword, fontsize=20)
+       ax.bar(y,x, color="#4CAF50",width=0.8)
        ax.grid(True)
        
        ax.legend()
