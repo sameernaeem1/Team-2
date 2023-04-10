@@ -1,5 +1,7 @@
 import pandas as pd 
 import matplotlib.pyplot as plt
+import numpy as np
+
 df = pd.read_csv("Dataset.csv")
 
 
@@ -13,82 +15,106 @@ def Userinterface():
  while True:
     print("-----Premier League Season's 2009 to 2022-----")
     print()
-    userinput= input("0:Display the whole team in whole season\n1:Display the status of each team in whole season\n2:Display a team\n3:Display team number\n4:Compare Teams\n5:Display the asending order rank of each teams in whole seasons\n6:Display the rank and point of that particular team\n7:?\nq:Quit\nChoose an option:")
-    if userinput == '0':
-        print(df)
-
-    elif userinput=='q':
-       ## quit
-       break
-    
-    elif userinput=='1':
-       ##display the status of teams in whole seasons### 
-      for index, row in df.iterrows():  
-       print(index,row)
+    userinput= input("1:Display Teams\n2:Compare Teams\n3:Choose Team\nQ:Quit\nChoose an Option:")
+    if userinput == '1':
+        for i, team in enumerate(team_names):
+         print(f"{i+1}. {team}")
 
     elif userinput=='2':
-##display the status of that particular team### 
-      print("Select a team:")
       for i, team in enumerate(team_names):
-         print(f"{i+1}. {team}")
-      selected_team_index = int(input("Enter the number of the team you want to select: ")) - 1
-      selected_team = team_names[selected_team_index]
-      selected_team_data = df[df['Team'] == selected_team]
-      print(selected_team_data)
+        print(f"{i+1}. {team}")
+      chosen_team_index1 = int(input("Enter the  number of the team you want to select")) - 1
+      chosen_team1 = team_names[chosen_team_index1]
+      print(f"First Team Picked:{chosen_team1}")
+      chosen_team_df1=df[df['Team'] == chosen_team1]
+      chosen_team_index2 = int(input("Enter the number of the team you want to compare it with")) - 1
+      chosen_team2 = team_names[chosen_team_index2]
+      print(f"Second Team Picked:{chosen_team2}")
+      chosen_team_df2=df[df['Team'] == chosen_team2]
+      user_keyword=input("Which keyword would you like to compare between the teams:(eg Points, rank or wins)\n")
+      chosen_columns1=[col for col in chosen_team_df1.columns if user_keyword.lower() in col.lower()]
+      chosen_columns2=[col for col in chosen_team_df2.columns if user_keyword.lower() in col.lower()]
+      a=chosen_team_df1[chosen_columns1].values.tolist()
+      b=chosen_team_df2[chosen_columns2].values.tolist()
+      c=chosen_team_df1['Season'].values.tolist()
+      print(a)
+      print(b)
+      print(c)
+
+      fig, ax = plt.subplots()
+      fig.suptitle("Comparing", fontsize=22)
+      ax.set_title(chosen_team1 + " vs " + chosen_team2,fontsize=18)
+      ax.set_xlabel("Year",fontsize=16)
+      ax.set_ylabel(user_keyword, fontsize=16)
+      ax.plot(c,a,'ro--',label=chosen_team1)
+      ax.plot(c,b,'go--',label=chosen_team2)
+      ax.grid(True)
+      ax.legend()
+      ax.set_xlim(-0.05, 12.05)
+      plt.show()
+
 
     elif userinput=='3':
-       ##only shows the unique team##
-       for i, team in enumerate(team_names):
-         print(f"{i+1}. {team}")
-
-    elif userinput=='4':
-         for i, team in enumerate(team_names):
-             print(f"{i+1}. {team}")
-         ui4=int(input('Choose a team:'))-1
-         df1=df.iloc[int(ui4)]
-         print("The team you have picked is:")
-         print(df1['Team'])
-         ui42=int(input('Choose another team:'))-1
-         #print(df.iloc[int(ui42)])
-         df2=df.iloc[int(ui42)]
-         print("The team you have picked is:")
-         print(df2['Team'])
-         dff=df1.compare(df2)
-         print(dff)
-
-    elif userinput=='5':
-      ## print the whole teams in ascending order of rank.
-      print(df.sort_values((['Rank','Points']), ascending=True))
-
-  ## Ask the user to input a keyword to display the value
-    elif userinput=='6':
        for i, team in enumerate(team_names):
          print(f"{i+1}. {team}")
        chosen_team_index = int(input("Enter the number of the team you want to select: ")) - 1
        chosen_team = team_names[chosen_team_index]
-       print(f"Team:{chosen_team}")
+       print(f"Team Picked:{chosen_team}")
        chosen_team_df=df[df['Team'] == chosen_team]
-       user_keyword=input("Enter a keyword to search for the component of the team:(eg Points, rank or wins)")
+       user_keyword=input("Enter a keyword to search for the component of the team:(eg Points, rank or wins)\n")
        chosen_columns=[col for col in chosen_team_df.columns if user_keyword.lower() in col.lower()]
-       pltdf=[]
-       pltdf=chosen_team_df[chosen_columns]
-       years=[9/10,10/11,11/12,12/13,13/14,14/15,15/16,16/17,17/18,18/19,19/20,20/21,21/22]
-
-       pltdf.to_csv(index=False)
-    
-      
-       print(pltdf)
+       a=chosen_team_df[chosen_columns].values.tolist()
+       c=chosen_team_df['Season'].values.tolist()
+        
+       print(a)
+       print(c)
        
 
-    
-    
-      
-       
-      
+       fig, ax = plt.subplots()
+       ax.set_title(chosen_team,fontsize=14)
+       ax.set_xlabel("Year",fontsize=12)
+       ax.set_ylabel(user_keyword, fontsize=10)
+       ax.plot(c,a,'mD:',label=chosen_team)
+       ax.grid(True)
 
-     
+       ax.legend()
+       plt.show()
 
+
+
+    ## chen's visualisation 
+    elif userinput=='4':
+       for i, team in enumerate(team_names):
+         print(f"{i+1}. {team}")
+       chosen_team_index = int(input("Enter the number of the team you want to select: ")) - 1
+       chosen_team = team_names[chosen_team_index]
+       print(f"Team Picked:{chosen_team}")
+       chosen_team_df=df[df['Team'] == chosen_team]
+       user_keyword=input("Enter a keyword to search for the component of the team:(eg Points, rank or wins)\n")
+       chosen_columns=[col for col in chosen_team_df.columns if user_keyword.lower() in col.lower()]
+
+
+       x = np.array(chosen_team_df['Wins'])
+       y = np.array(chosen_team_df['Season'])
+        
        
+
+       print(x,y)
+
+
+       fig, ax = plt.subplots()
+       ax.set_title("Chelsea Wins",fontsize=20)
+       ax.set_xlabel("Year",fontsize=12)
+       ax.set_ylabel(user_keyword, fontsize=20)
+       ax.bar(y,x, color="#4CAF50",width=0.8)
+       ax.grid(True)
+       
+       ax.legend()
+       plt.show()
+        
+       
+       
+
 
 
        if  user_keyword =='wins':
@@ -99,25 +125,59 @@ def Userinterface():
        elif user_keyword=='points':
         totalpoints=chosen_team_df[chosen_columns].sum()
         print(f"{chosen_team} got total {totalpoints} points")
+
+   
+    elif userinput=='q' or userinput=='Q':
+       ## quit
+       break
+    
+   # elif userinput=='00':
+       ##display the status of teams in whole seasons### 
+   #  for index, row in df.iterrows():  
+    #   print(index,row)
+
+    elif userinput=='20':
+##display the status of that particular team### 
+      print("Select a team:")
+      for i, team in enumerate(team_names):
+         print(f"{i+1}. {team}")
+      choosen_index = int(input("Enter the number of the index team you want to select: ")) - 1
+      User_team = team_names[choosen_index]
+      User_team_data = df[df['Team'] == User_team]
+      print(User_team_data)
+
+    elif userinput=='30':
+       ##only shows the unique team##
+       for i, team in enumerate(team_names):
+         print(f"{i+1}. {team}")
+
+
+
+
+    elif userinput=='5':
+      ## print the whole teams in ascending order of rank.
+      print(df.sort_values((['Rank','Points']), ascending=True))
+
+
+  ## Ask the user to input a keyword to display the value
+ 
+       
+       
+
+
+
+
    
 
-    elif userinput=='7':
-      for i, team in enumerate(team_names):
-        print(f"{i+1}.{team}")
-      chosen_team_index = int(input("Enter the number of the team you want to select: ")) - 1
-      chosen_team = team_names[chosen_team_index]
-      print(f"Team:{chosen_team}")
-      chosen_team_df=df[df['Team'] == chosen_team]
-      user_keyword=input("Enter a keyword to search for the component of the team:(eg Points, rank or wins)")
-      chosen_columns=[col for col in chosen_team_df.columns if user_keyword.lower() in col.lower()] 
-      selected_comp=chosen_team_df[chosen_columns].iloc[0]
-       ## 
-      plt.bar(["comp1"],[selected_comp.values[0]])
-      plt.title(f"{chosen_team} {user_keyword}")
-      plt.show()
+
 
 
            
+
+
+
+
+    
 
 
 ## api workflow
@@ -142,4 +202,3 @@ Userinterface()
 
 ## use iloc function to modify the associated array
 #df.iloc[3,1]
-
