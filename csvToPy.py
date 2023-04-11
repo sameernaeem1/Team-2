@@ -82,40 +82,6 @@ def Userinterface():
 
 
 
-    ## chen's visualisation 
-    elif userinput=='4':
-       for i, team in enumerate(team_names):
-         print(f"{i+1}. {team}")
-       chosen_team_index = int(input("Enter the number of the team you want to select: ")) - 1
-       chosen_team = team_names[chosen_team_index]
-       print(f"Team Picked:{chosen_team}")
-       chosen_team_df=df[df['Team'] == chosen_team]
-       user_keyword=input("Enter a keyword to search for the component of the team:(eg Points, rank or wins)\n")
-       chosen_columns=[col for col in chosen_team_df.columns if user_keyword.lower() in col.lower()]
-
-
-       x = np.array(chosen_team_df['Wins'])
-       y = np.array(chosen_team_df['Season'])
-        
-       
-
-       print(x,y)
-
-
-       fig, ax = plt.subplots()
-       ax.set_title("Chelsea Wins",fontsize=20)
-       ax.set_xlabel("Year",fontsize=12)
-       ax.set_ylabel(user_keyword, fontsize=20)
-       ax.bar(y,x, color="#4CAF50",width=0.8)
-       ax.grid(True)
-       
-       ax.legend()
-       plt.show()
-        
-       
-       
-
-
 
        if  user_keyword =='wins':
         totalnum=chosen_team_df[chosen_columns].sum()
