@@ -23,11 +23,11 @@ def Userinterface():
     elif userinput=='2':
       for i, team in enumerate(team_names):
         print(f"{i+1}. {team}")
-      chosen_team_index1 = int(input("Enter the  number of the team you want to select")) - 1
+      chosen_team_index1 = int(input("Enter the  number of the team you want to select:")) - 1
       chosen_team1 = team_names[chosen_team_index1]
       print(f"First Team Picked:{chosen_team1}")
       chosen_team_df1=df[df['Team'] == chosen_team1]
-      chosen_team_index2 = int(input("Enter the number of the team you want to compare it with")) - 1
+      chosen_team_index2 = int(input("Enter the number of the team you want to compare it with:")) - 1
       chosen_team2 = team_names[chosen_team_index2]
       print(f"Second Team Picked:{chosen_team2}")
       chosen_team_df2=df[df['Team'] == chosen_team2]
