@@ -126,6 +126,65 @@ def Userinterface():
 
 
   ## Ask the user to input a keyword to display the value
+    elif userinput=='shah':
+      for i, team in enumerate(team_names):
+        print(f"{i+1}. {team}")
+      chosen_team_index1 = int(input("Chose the First Team:")) - 1
+      chosen_team1 = team_names[chosen_team_index1]
+      print(f"First Team Picked:{chosen_team1}")
+      chosen_team_df1=df[df['Team'] == chosen_team1]
+      chosen_team_index2 = int(input("Choose the Second Team:")) - 1
+      chosen_team2 = team_names[chosen_team_index2]
+      print(f"Second Team Picked:{chosen_team2}")
+      chosen_team_df2=df[df['Team'] == chosen_team2]
+
+      chosen_team_index3 = int(input("Choose the Thrid Team:")) - 1
+      chosen_team3 = team_names[chosen_team_index3]
+      print(f"Second Team Picked:{chosen_team3}")
+      chosen_team_df3=df[df['Team'] == chosen_team3]
+
+      
+      seasons = chosen_team_df1['Season'].values
+      team_attributes = {}
+      for attribute in ['Points', 'Rank', 'Wins']:
+          attribute_values = []
+          for season in seasons:
+              chosen_season_df = df[(df['Team'] == chosen_team1) & (df['Season'] == season)]
+              attribute_values.append(chosen_season_df[attribute].values[0])
+          team_attributes[attribute] = attribute_values
+
+      chosen_attribute = input("Which attribute would you like to compare between the teams? (eg. Points, Rank, Wins): ")
+      measurement = team_attributes[chosen_attribute]
+
+      teams = (chosen_team1, chosen_team2, chosen_team3)
+      x = np.arange(len(seasons))  # the label locations
+      width = 0.25  # the width of the bars
+      multiplier = 0
+
+      fig, ax = plt.subplots()
+
+      for attribute in team_attributes.keys():
+          offset = width * multiplier
+          rects = ax.bar(x + offset, team_attributes[attribute], width, label=attribute)
+          ax.bar_label(rects, padding=3)
+          multiplier += 1
+
+      # Add some text for labels, title and custom x-axis tick labels, etc.
+      ax.set_ylabel(chosen_attribute)
+      ax.set_title('Team attributes comparison')
+      ax.set_xticks(x + width, seasons)
+      ax.legend(loc='upper left', ncols=3)
+      ax.set_ylim(0, max(measurement) + 5)
+
+      # Color the bars of the chosen teams
+      for i, team in enumerate(teams):
+          chosen_season_df = df[(df['Team'] == team) & (df['Season'].isin(seasons))]
+          chosen_season_indices = chosen_season_df.index - chosen_season_df.index[0]
+          for j in chosen_season_indices:
+              ax.patches[(len(team_attributes) * j) + i].set_fc(f'C{i+1}')
+
+      plt.show()
+
 
 
 
