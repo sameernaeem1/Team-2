@@ -127,7 +127,7 @@ def Userinterface():
 
   ## Ask the user to input a keyword to display the value
   ## Shahs Step Demo
-    elif userinput=='Steppe':
+    elif userinput=='steppe':
         for i, team in enumerate(team_names):
           print(f"{i+1}. {team}")
         chosen_team_index1 = int(input("Enter the number of the team you want to select:")) - 1

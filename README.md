@@ -1,5 +1,8 @@
 # Team-2
-Group Project
+Shah's Visualisations HOW to Run.
 
+First Visualisation: Step Demo Chart
+The way to run this is to press play on the program and type "Steppe"
 
-construct a dataframe that store the whole status of the teams.
+Second Visualisation: Group Bar Chart
+The way to run this is to press play on the program and type "group"
