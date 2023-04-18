@@ -126,73 +126,104 @@ def Userinterface():
 
 
   ## Ask the user to input a keyword to display the value
-    elif userinput=='shah':
-      for i, team in enumerate(team_names):
-        print(f"{i+1}. {team}")
-      chosen_team_index1 = int(input("Chose the First Team:")) - 1
-      chosen_team1 = team_names[chosen_team_index1]
-      print(f"First Team Picked:{chosen_team1}")
-      chosen_team_df1=df[df['Team'] == chosen_team1]
-      chosen_team_index2 = int(input("Choose the Second Team:")) - 1
-      chosen_team2 = team_names[chosen_team_index2]
-      print(f"Second Team Picked:{chosen_team2}")
-      chosen_team_df2=df[df['Team'] == chosen_team2]
+  ## Shahs Step Demo
+    elif userinput=='Steppe':
+        for i, team in enumerate(team_names):
+          print(f"{i+1}. {team}")
+        chosen_team_index1 = int(input("Enter the number of the team you want to select:")) - 1
+        chosen_team1 = team_names[chosen_team_index1]
+        print(f"First Team Picked:{chosen_team1}")
+        chosen_team_df1=df[df['Team'] == chosen_team1]
+        chosen_team_index2 = int(input("Enter the number of the second team you want to compare it with:")) - 1
+        chosen_team2 = team_names[chosen_team_index2]
+        print(f"Second Team Picked:{chosen_team2}")
+        chosen_team_df2=df[df['Team'] == chosen_team2]   
+        chosen_team_index3 = int(input("Choose the Thrid Team:")) - 1
+        chosen_team3 = team_names[chosen_team_index3]
+        print(f"Thrid Team Picked:{chosen_team3}")
+        chosen_team_df3=df[df['Team'] == chosen_team3]
 
-      chosen_team_index3 = int(input("Choose the Thrid Team:")) - 1
-      chosen_team3 = team_names[chosen_team_index3]
-      print(f"Second Team Picked:{chosen_team3}")
-      chosen_team_df3=df[df['Team'] == chosen_team3]
+        user_keyword=input("Whick of these keywords would you like to compare between these teams:(e.g. Points, Rank, or Wins)\n")
+        chosen_columns1=[col for col in chosen_team_df1.columns if user_keyword.lower() in col.lower()]
+        chosen_columns2=[col for col in chosen_team_df2.columns if user_keyword.lower() in col.lower()]
 
-      
-      seasons = chosen_team_df1['Season'].values
-      team_attributes = {}
-      for attribute in ['Points', 'Rank', 'Wins']:
-          attribute_values = []
-          for season in seasons:
-              chosen_season_df = df[(df['Team'] == chosen_team1) & (df['Season'] == season)]
-              attribute_values.append(chosen_season_df[attribute].values[0])
-          team_attributes[attribute] = attribute_values
+        chosen_columns3=[col for col in chosen_team_df3.columns if user_keyword.lower() in col.lower()]
 
-      chosen_attribute = input("Which attribute would you like to compare between the teams? (eg. Points, Rank, Wins): ")
-      measurement = team_attributes[chosen_attribute]
-
-      teams = (chosen_team1, chosen_team2, chosen_team3)
-      x = np.arange(len(seasons))  # the label locations
-      width = 0.25  # the width of the bars
-      multiplier = 0
-
-      fig, ax = plt.subplots()
-
-      for attribute in team_attributes.keys():
-          offset = width * multiplier
-          rects = ax.bar(x + offset, team_attributes[attribute], width, label=attribute)
-          ax.bar_label(rects, padding=3)
-          multiplier += 1
-
-      # Add some text for labels, title and custom x-axis tick labels, etc.
-      ax.set_ylabel(chosen_attribute)
-      ax.set_title('Team attributes comparison')
-      ax.set_xticks(x + width, seasons)
-      ax.legend(loc='upper left', ncols=3)
-      ax.set_ylim(0, max(measurement) + 5)
-
-      # Color the bars of the chosen teams
-      for i, team in enumerate(teams):
-          chosen_season_df = df[(df['Team'] == team) & (df['Season'].isin(seasons))]
-          chosen_season_indices = chosen_season_df.index - chosen_season_df.index[0]
-          for j in chosen_season_indices:
-              ax.patches[(len(team_attributes) * j) + i].set_fc(f'C{i+1}')
-
-      plt.show()
+        a=chosen_team_df1[chosen_columns1].values.tolist()
+        b=chosen_team_df2[chosen_columns2].values.tolist()
+        c=chosen_team_df3[chosen_columns3].values.tolist()
+        d=chosen_team_df1['Season'].values.tolist()
+        print(a)
+        print(b)
+        print(c)
+        print(d)
 
 
+        y1 = [item for sublist in a for item in sublist]
+        y2 = [item for sublist in b for item in sublist]
+        y3 = [item for sublist in c for item in sublist]
+        x = d
 
+        
+        # Create the plot
+        fig, ax = plt.subplots()
+        plt.plot(x, y1, drawstyle='steps', label=chosen_team1)
 
-   
+        plt.plot(x, y2, drawstyle='steps-mid', label=chosen_team2)
 
+        plt.plot(x, y3, drawstyle='steps-mid', label=chosen_team3)
 
+        plt.grid(axis='x', color='0.95')
+        plt.legend(title='Parameter drawstyle:')
+        plt.title(f'{user_keyword} Comparison between {chosen_team1} and {chosen_team2} and {chosen_team3} ')
+        plt.show()
 
+## Shah's Bar Chart of Season 2009/2010
+    elif userinput == 'group':
+        for i, team in enumerate(team_names):
+            print(f"{i+1}. {team}")
+        chosen_team_index1 = int(input("Enter the number of the first team you want to select:")) - 1
+        chosen_team1 = team_names[chosen_team_index1]
+        print(f"First Team Picked: {chosen_team1}")
+        chosen_team_df1 = df[df['Team'] == chosen_team1]
 
+        chosen_team_index2 = int(input("Enter the number of the second team you want to compare it with:")) - 1
+        chosen_team2 = team_names[chosen_team_index2]
+        print(f"Second Team Picked: {chosen_team2}")
+        chosen_team_df2 = df[df['Team'] == chosen_team2]
+
+        chosen_team_index3 = int(input("Choose the third team:")) - 1
+        chosen_team3 = team_names[chosen_team_index3]
+        print(f"Third Team Picked: {chosen_team3}")
+        chosen_team_df3 = df[df['Team'] == chosen_team3]
+
+        user_keyword = input("Which of these keywords would you like to compare between these teams? (e.g. Points, Rank, or Wins)\n")
+        chosen_columns1 = [col for col in chosen_team_df1.columns if user_keyword.lower() in col.lower()]
+        chosen_columns2 = [col for col in chosen_team_df2.columns if user_keyword.lower() in col.lower()]
+        chosen_columns3 = [col for col in chosen_team_df3.columns if user_keyword.lower() in col.lower()]
+
+        a=chosen_team_df1[chosen_columns1].values.tolist()
+        b=chosen_team_df2[chosen_columns2].values.tolist()
+        c=chosen_team_df3[chosen_columns3].values.tolist()
+        d=chosen_team_df1['Season'].values.tolist()
+        print(a)
+        print(b)
+        print(c)
+        print(d)
+
+        fig, ax = plt.subplots()
+        bar_labels = [chosen_team1, chosen_team2, chosen_team3]
+        bar_colors = ['tab:red', 'tab:blue', 'tab:green']
+        ax.bar([chosen_team1, chosen_team2, chosen_team3],
+               [chosen_team_df1[chosen_columns1].values[0][0], chosen_team_df2[chosen_columns2].values[0][0], chosen_team_df3[chosen_columns3].values[0][0]],
+               label=bar_labels,
+               color=bar_colors)
+
+        ax.set_ylabel(user_keyword)
+        ax.set_title(f"{user_keyword} comparison between {chosen_team1}, {chosen_team2}, and {chosen_team3}")
+        ax.legend(title='Team')
+
+        plt.show() 
            
 
 
