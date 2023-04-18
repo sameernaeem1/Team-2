@@ -1,9 +1,8 @@
-import pandas as pd 
 import matplotlib.pyplot as plt
 df = pd.read_csv("Dataset.csv")
 
-input_values = [1, 2, 3, 4, 5]
-squares = [1, 4, 9, 16, 25]
+goals = [55, 65, 75, 85, 95, 105, 115]
+amountscored = [73,58,93,66,100,84,71,80,106,95,102,83,99]
 fig, ax = plt.subplots()
 fig.suptitle("Figure title", fontsize=20)
 ax.set_title("Square Numbers", fontsize=14)
