@@ -1,6 +1,8 @@
 import pandas as pd 
 import matplotlib.pyplot as plt
 import numpy as np
+import seaborn as sns
+
 
 df = pd.read_csv("Dataset.csv")
 
@@ -220,7 +222,8 @@ def Userinterface():
                color=bar_colors)
 
         ax.set_ylabel(user_keyword)
-        ax.set_title(f"{user_keyword} comparison between {chosen_team1}, {chosen_team2}, and {chosen_team3}")
+        ax.set_xlabel(f"Teams")
+        ax.set_title(f"{user_keyword} comparison between {chosen_team1}, {chosen_team2}, and {chosen_team3} in 2009/2010")
         ax.legend(title='Team')
 
         plt.show() 
