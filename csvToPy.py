@@ -22,7 +22,7 @@ def Userinterface():
 
 
 
-    #VISUALISATION
+    #VISUALISATION 1
     elif userinput=='2':
       for i, team in enumerate(team_names):
         print(f"{i+1}. {team}")
@@ -83,6 +83,31 @@ def Userinterface():
 
        ax.legend()
        plt.show()
+       
+#VISUALISATION 2
+    elif userinput=='goals':
+       for i, team in enumerate(team_names):
+         print(f"{i+1}. {team}")
+       chosen_team_index = int(input("Enter the number of the team you want to select: ")) - 1
+       chosen_team = team_names[chosen_team_index]
+       print(f"Team Picked:{chosen_team}")
+       chosen_team_df=df[df['Team'] == chosen_team]
+       a=np.array(chosen_team_df['Goals'])
+       c=np.array(chosen_team_df['Season'])
+        
+       print(a)
+       print(c)
+       
+       fig, ax = plt.subplots()
+       ax.set_ylabel("Goals",fontsize=16)
+       ax.set_xlabel("Season",fontsize=16)
+       ax.set_title(chosen_team+ " Goals",fontsize=18)
+       ax.set_yticks(range(0, 110, 5))
+       ax.bar(c,a, color="#691219")
+       plt.show() 
+
+
+
 
     elif userinput=='4':
        for i, team in enumerate(team_names):
