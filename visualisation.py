@@ -80,8 +80,6 @@ def Userinterface():
        ax.legend()
        plt.show()
 
-
-
     ## chen's visualisation 
     elif userinput=='4':
        for i, team in enumerate(team_names):
