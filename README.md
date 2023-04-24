@@ -1,6 +1,9 @@
 # Team-2
 Group Project
 
-Explain how to run code
-
-construct a dataframe that store the statistics of the football teams
+Run the csvToPy python file 
+Enter number for option 
+Enter number for team(s) 
+Enter keyword (one of the words from top row of Dataset) 
+Open visualisation 
+Enter q to quit
