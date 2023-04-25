@@ -1,11 +1,8 @@
 import matplotlib.pyplot as plt
-
-goals = [55, 65, 75, 85, 95, 105, 115]
+season = ['09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21']
 amountscored = [73,58,93,66,100,84,71,80,106,95,102,83,99]
-fig, ax = plt.subplots()
-fig.suptitle("Figure title", fontsize=20)
-ax.set_title("Square Numbers", fontsize=14)
-ax.set_xlabel("Value", fontsize=12)
-ax.set_ylabel("Square of Value", fontsize=12)
-ax.plot(goals, amountscored, 'mD:')
+fig, (left) = plt.subplots(1)
+left.set_title("Manchester City Goals Over Every Year (2000s)")
+left.bar(season, amountscored)
 plt.show()
+
