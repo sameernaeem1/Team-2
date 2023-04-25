@@ -1,4 +1,4 @@
- import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
 goals = [55, 65, 75, 85, 95, 105, 115]
 amountscored = [73,58,93,66,100,84,71,80,106,95,102,83,99]
