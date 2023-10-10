@@ -1,5 +1,5 @@
 # Team-2
-Group Project
+Premier League Group Project
 
 Run the csvToPy python file 
 Enter number for option 
